@@ -13,7 +13,7 @@ public class Conta {
     }
     public boolean sacar(float valor, int senha){
         if(senha == this.senha){
-            if(saldo >= valor ){
+            if(saldo >= valor  && valor>0){
                 saldo -= valor;
                 return true;
             }else{
