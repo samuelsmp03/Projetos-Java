@@ -18,9 +18,11 @@ public class Sistema {
         return false;
     }
     public static Cliente procuraCliente(String email,long numero){
-        for (Cliente cliente : clientes){
-            if(cliente.getEmail() == email && cliente.getCelular() == numero){
-                return cliente;
+        if(clientes != null) {
+            for (Cliente cliente : clientes) {
+                if (cliente.getEmail() == email && cliente.getCelular() == numero) {
+                    return cliente;
+                }
             }
         }
         return null;

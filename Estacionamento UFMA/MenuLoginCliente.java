@@ -3,6 +3,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static java.lang.Long.parseLong;
+
 
 public class MenuLoginCliente extends JFrame implements ActionListener{
     private JLabel msgEmail = new JLabel("Insira seu email:");
@@ -13,6 +15,7 @@ public class MenuLoginCliente extends JFrame implements ActionListener{
     private long numero;
     private String email;
     private Cliente cliente;
+    private JFrame app;
     public MenuLoginCliente() {
         super("Login Cliente");
         this.setSize(400, 170);
@@ -47,7 +50,7 @@ public class MenuLoginCliente extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent event){
         try {
             email = emailField.getText();
-            numero = (long)(Integer.parseInt(numeroField.getText()));
+            numero = parseLong(numeroField.getText());
             cliente = Sistema.procuraCliente(email,numero);
             if(cliente != null){
                 MenuCliente app = new MenuCliente();

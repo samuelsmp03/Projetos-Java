@@ -7,6 +7,7 @@ public class MenuLoginGerente extends JFrame implements ActionListener {
     private JLabel msgSenha = new JLabel("Senha:");
     private JTextField senhaField = new JTextField(20);
     private JButton okButton = new JButton("OK!");
+    private JFrame app;
 
     public MenuLoginGerente() {
         super("Login Gerente");

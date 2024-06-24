@@ -3,9 +3,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MenuGerente extends JFrame implements ActionListener {
-    JButton cadastrar = new JButton("Cadastrar Cliente");
-    JButton remover = new JButton("Remover Cliente");
-    JButton relatorio = new JButton("Gerar Relatórios");
+    private JButton cadastrar = new JButton("Cadastrar Cliente");
+    private JButton remover = new JButton("Remover Cliente");
+    private JButton relatorio = new JButton("Gerar Relatórios");
+
+    private JFrame app;
     public MenuGerente(){
         super("Menu Gerente");
         this.setSize(600,600);
@@ -33,13 +35,14 @@ public class MenuGerente extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent event){
         if(event.getSource() == cadastrar){
-
+            MenuCadastrarCliente app = new MenuCadastrarCliente();
         }
         else if(event.getSource() == remover){
-
+            MenuRemoverCliente app = new MenuRemoverCliente();
         }
         else if(event.getSource() == relatorio){
-
+            MenuRelatorios app = new MenuRelatorios();
         }
+        app.setVisible(true);
     }
 }
