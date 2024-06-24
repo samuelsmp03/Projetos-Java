@@ -12,6 +12,7 @@ public class MenuGerente extends JFrame implements ActionListener {
         super("Menu Gerente");
         this.setSize(600,600);
         SpringLayout layout = new SpringLayout();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setLayout(layout);
 
         cadastrar.addActionListener(this);
@@ -36,13 +37,16 @@ public class MenuGerente extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent event){
         if(event.getSource() == cadastrar){
             MenuCadastrarCliente app = new MenuCadastrarCliente();
+            app.setVisible(true);
         }
         else if(event.getSource() == remover){
             MenuRemoverCliente app = new MenuRemoverCliente();
+            app.setVisible(true);
         }
         else if(event.getSource() == relatorio){
             MenuRelatorios app = new MenuRelatorios();
+            app.setVisible(true);
         }
-        app.setVisible(true);
+
     }
 }

@@ -33,4 +33,11 @@ public abstract class Veiculo implements Taxa {
         this.status = status;
     }
 
+    public int getMinutos() {
+        return minutos;
+    }
+
+    public void setMinutos(int minutos) {
+        this.minutos = minutos;
+    }
 }

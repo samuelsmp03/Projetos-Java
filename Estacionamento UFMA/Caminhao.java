@@ -2,7 +2,7 @@ public class Caminhao extends Veiculo {
     private int cargaMax;
     private float comprimento;
 
-    public Caminhao(int segundos, float valor, String status, int cargaMax, float comprimento) {
+    public Caminhao(int segundos, float valor, String status,int cargaMax, float comprimento) {
         super(segundos, valor, status);
         this.cargaMax = cargaMax;
         this.comprimento = comprimento;

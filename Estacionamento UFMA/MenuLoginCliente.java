@@ -55,10 +55,8 @@ public class MenuLoginCliente extends JFrame implements ActionListener{
             if(cliente != null){
                 MenuCliente app = new MenuCliente();
             }else{
-                JOptionPane.showConfirmDialog(this, "Conta não encontrada!!!", "Erro", JOptionPane.YES_OPTION);
-            }
+                JOptionPane.showMessageDialog(this,"Conta não encontrada" , "Erro", JOptionPane.ERROR_MESSAGE);            }
         }catch(Exception exception){
-            JOptionPane.showConfirmDialog(this, "Tipo de dados incorretos!!!", "Erro", JOptionPane.YES_OPTION);
-        }
+            JOptionPane.showMessageDialog(this, "Tipo de dado incorreto!!!", "Erro", JOptionPane.ERROR_MESSAGE);        }
     }
 }

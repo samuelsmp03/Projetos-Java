@@ -33,6 +33,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         add(gerente,BorderLayout.EAST);
         add(mensagem,BorderLayout.NORTH);
         setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     @Override
     public void actionPerformed(ActionEvent event){
@@ -41,8 +42,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
             app.setVisible(true);
         }
         else if(event.getSource() == convidado){
-            JOptionPane.showConfirmDialog(this, "CONVIDADO", "Erro", JOptionPane.YES_OPTION);
-        }
+            JOptionPane.showMessageDialog(this,"Convidado" , "Erro", JOptionPane.ERROR_MESSAGE);        }
         else if(event.getSource() == gerente){
             MenuLoginGerente app = new MenuLoginGerente();
             app.setVisible(true);

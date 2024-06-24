@@ -3,13 +3,16 @@ public class Sistema {
     private float horario;
 
     private static final int senha = 12345;
-    static private ArrayList<Cliente> clientes;
-    private int[][] vagasTerreo;
+    static private ArrayList<Cliente> clientes = new ArrayList<>();
+    private static int[][] vagasTerreo = {{0,0,0}, {0,0,0}};
 
     public Sistema(float horario,ArrayList<Cliente> clientes,int[][] vagas) {
         this.horario = horario;
         this.clientes = clientes;
         this.vagasTerreo = vagas;
+    }
+    public static void adicionaCliente(Cliente cliente){
+        clientes.add(cliente);
     }
     public static boolean verificaSenha(int teste){
         if(teste == senha){
@@ -36,5 +39,21 @@ public class Sistema {
     }
     public int getSenha(){
         return senha;
+    }
+
+    public static ArrayList<Cliente> getClientes() {
+        return clientes;
+    }
+
+    public static void setClientes(ArrayList<Cliente> clientes) {
+        Sistema.clientes = clientes;
+    }
+
+    public static int[][] getVagas() {
+        return vagasTerreo;
+    }
+
+    public void setVagasTerreo(int[][] vagasTerreo) {
+        this.vagasTerreo = vagasTerreo;
     }
 }
