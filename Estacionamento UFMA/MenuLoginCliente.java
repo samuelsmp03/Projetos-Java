@@ -10,6 +10,9 @@ public class MenuLoginCliente extends JFrame implements ActionListener{
     private JTextField emailField = new JTextField(20);
     private JTextField numeroField = new JTextField(20);
     private JButton okButton = new JButton("OK!");
+    private long numero;
+    private String email;
+    private Cliente cliente;
     public MenuLoginCliente() {
         super("Login Cliente");
         this.setSize(400, 170);
@@ -43,20 +46,15 @@ public class MenuLoginCliente extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent event){
         try {
-            String email = emailField.getText();
-            long numero = Integer.parseInt(numeroField.getText());
-            Cliente cliente = Sistema.procuraCliente(email,numero);
+            email = emailField.getText();
+            numero = (long)(Integer.parseInt(numeroField.getText()));
+            cliente = Sistema.procuraCliente(email,numero);
             if(cliente != null){
                 MenuCliente app = new MenuCliente();
-                app.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                app.setSize(600, 600);
-                app.setVisible(true);
-                this.setVisible(false);
             }else{
-                MenuErro.show(this,"Dados inválidos! Conta não encontrada");
+                JOptionPane.showConfirmDialog(this, "Conta não encontrada!!!", "Erro", JOptionPane.YES_OPTION);
             }
         }catch(Exception exception){
-            //MenuErro.show(this,"Tipos de dados incorretos!!!");
             JOptionPane.showConfirmDialog(this, "Tipo de dados incorretos!!!", "Erro", JOptionPane.YES_OPTION);
         }
     }

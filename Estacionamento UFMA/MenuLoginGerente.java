@@ -38,12 +38,14 @@ public class MenuLoginGerente extends JFrame implements ActionListener {
         try {
             int teste = Integer.parseInt(senhaField.getText());
             if(Sistema.verificaSenha(teste) == true){
-
+                this.setVisible(false);
+                MenuGerente app = new MenuGerente();
+                app.setVisible(true);
             }else{
-                MenuErro.show(this,"Senha incorreta!!");
+                JOptionPane.showConfirmDialog(this, "Senha incorreta!!!", "Erro", JOptionPane.YES_OPTION);
             }
         }catch(Exception exception){
-            MenuErro.show(this,"Informe um inteiro!");
+            JOptionPane.showConfirmDialog(this, "Informe um inteiro!!!", "Erro", JOptionPane.YES_OPTION);
         }
     }
 }
