@@ -1,5 +1,4 @@
 import javax.swing.*;
-import javax.swing.event.*;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -36,8 +35,8 @@ public class MenuPrincipal extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent event){
         if(event.getSource() == cliente) {
-            MenuCliente app = new MenuCliente();
-            app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            MenuLoginCliente app = new MenuLoginCliente();
+            app.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             app.setSize(600, 600);
             app.setVisible(true);
         }
@@ -45,8 +44,10 @@ public class MenuPrincipal extends JFrame implements ActionListener {
             JOptionPane.showConfirmDialog(this, "CONVIDADO", "TESTE2", JOptionPane.YES_OPTION);
         }
         else if(event.getSource() == gerente){
-            JOptionPane.showConfirmDialog(this, "GERENTE", "TESTE2", JOptionPane.YES_OPTION);
-
+            MenuLoginGerente app = new MenuLoginGerente();
+            app.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            app.setSize(600, 600);
+            app.setVisible(true);
         }
     }
 }

@@ -1,5 +1,5 @@
 import java.util.*;
-public class Cliente implements Reserva {
+public class Cliente {
     private long celular;
     private String email;
     private ArrayList<Veiculo> veiculos;
@@ -22,7 +22,10 @@ public class Cliente implements Reserva {
         this.email = email;
     }
 
+    /*
     @Override
     public boolean reservar(int[][] matrizVagas) {
     }
+    */
+
 }
