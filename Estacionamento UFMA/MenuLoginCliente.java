@@ -10,9 +10,11 @@ public class MenuLoginCliente extends JFrame implements ActionListener{
     private JTextField emailField = new JTextField(20);
     private JTextField numeroField = new JTextField(20);
     private JButton okButton = new JButton("OK!");
-    private JLabel error;
     public MenuLoginCliente() {
-        super("Menu Cliente");
+        super("Login Cliente");
+        this.setSize(400, 170);
+        setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         SpringLayout layout = new SpringLayout();
         this.setLayout(layout);
         add(msgEmail);
@@ -21,9 +23,6 @@ public class MenuLoginCliente extends JFrame implements ActionListener{
         add(numeroField);
         add(okButton);
         okButton.addActionListener(this);
-        error = new JLabel("");
-        error.setText("Verifique seu email e número! Conta não encontrada");
-
 
         layout.putConstraint(SpringLayout.WEST, msgEmail, 5, SpringLayout.WEST, getContentPane());
         layout.putConstraint(SpringLayout.NORTH, msgEmail, 5, SpringLayout.NORTH, getContentPane());
@@ -40,13 +39,6 @@ public class MenuLoginCliente extends JFrame implements ActionListener{
         layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, okButton, 0, SpringLayout.HORIZONTAL_CENTER, getContentPane());
         layout.putConstraint(SpringLayout.NORTH, okButton, 20, SpringLayout.SOUTH, numeroField);
     }
-    public void erroMenu(){
-        JDialog janelaErro = new JDialog(this, "Erro", true);
-        janelaErro.setLayout(new FlowLayout());
-        janelaErro.add(error);
-        janelaErro.setSize(500,100);
-        janelaErro.setVisible(true);
-    }
 
     @Override
     public void actionPerformed(ActionEvent event){
@@ -61,10 +53,11 @@ public class MenuLoginCliente extends JFrame implements ActionListener{
                 app.setVisible(true);
                 this.setVisible(false);
             }else{
-                erroMenu();
+                MenuErro.show(this,"Dados inválidos! Conta não encontrada");
             }
         }catch(Exception exception){
-            erroMenu();
+            //MenuErro.show(this,"Tipos de dados incorretos!!!");
+            JOptionPane.showConfirmDialog(this, "Tipo de dados incorretos!!!", "Erro", JOptionPane.YES_OPTION);
         }
     }
 }

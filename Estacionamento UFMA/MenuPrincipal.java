@@ -13,7 +13,8 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
     public MenuPrincipal(){
         super("Estacionamento UFMA");
-        teste = new JPanel();
+        this.setSize(800,600);
+
         mensagem = new JLabel("Bem-vindo ao estacionamento UFMA! Selecione a forma de login");
         convidado = new JButton("Convidado");
         cliente = new JButton("Cliente");
@@ -31,22 +32,19 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         add(cliente,BorderLayout.CENTER);
         add(gerente,BorderLayout.EAST);
         add(mensagem,BorderLayout.NORTH);
+        setLocationRelativeTo(null);
     }
     @Override
     public void actionPerformed(ActionEvent event){
         if(event.getSource() == cliente) {
             MenuLoginCliente app = new MenuLoginCliente();
-            app.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            app.setSize(600, 600);
             app.setVisible(true);
         }
         else if(event.getSource() == convidado){
-            JOptionPane.showConfirmDialog(this, "CONVIDADO", "TESTE2", JOptionPane.YES_OPTION);
+            JOptionPane.showConfirmDialog(this, "CONVIDADO", "Erro", JOptionPane.YES_OPTION);
         }
         else if(event.getSource() == gerente){
             MenuLoginGerente app = new MenuLoginGerente();
-            app.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            app.setSize(600, 600);
             app.setVisible(true);
         }
     }
