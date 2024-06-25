@@ -1,5 +1,6 @@
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public abstract class Veiculo implements Taxa {
     protected int minutos;
@@ -7,17 +8,17 @@ public abstract class Veiculo implements Taxa {
     protected String status;
     private ScheduledExecutorService scheduler;
 
-    public Veiculo(int segundos, float valor, String status){
-        this.minutos = segundos;
+    public Veiculo(int minutos, float valor, String status){
+        this.minutos = minutos;
         this.valor = valor;
         this.status = status;
         this.scheduler = Executors.newScheduledThreadPool(1);
     }
 
-    public int getSegundos() {
+    public int getMinutos() {
         return minutos;
     }
-    public void setSegundos(int minutos) {
+    public void setMinutos(int minutos) {
         this.minutos = minutos;
     }
     public float getValor() {
@@ -33,11 +34,19 @@ public abstract class Veiculo implements Taxa {
         this.status = status;
     }
 
-    public int getMinutos() {
-        return minutos;
+    public void startTimer() {
+        scheduler.scheduleAtFixedRate(() -> {
+            this.minutos++;
+            this.valor = this.minutos * 0.3f;
+        }, 1, 1, TimeUnit.MINUTES);
     }
 
-    public void setMinutos(int minutos) {
-        this.minutos = minutos;
+    public void stopTimer() {
+        scheduler.shutdown();
+    }
+
+    public void estacionar() {
+        this.setStatus("estacionado");
+        startTimer();
     }
 }

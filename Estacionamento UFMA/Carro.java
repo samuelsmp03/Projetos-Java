@@ -3,8 +3,8 @@ public class Carro extends Veiculo {
     private String marca;
     private String modelo;
 
-    public Carro(int segundos, float valor, String status, String cor, String marca, String modelo) {
-        super(segundos, valor, status);
+    public Carro(int minutos, float valor, String status, String cor, String marca, String modelo) {
+        super(minutos, valor, status);
         this.cor = cor;
         this.marca = marca;
         this.modelo = modelo;
@@ -13,31 +13,35 @@ public class Carro extends Veiculo {
     public String getCor() {
         return cor;
     }
+
     public void setCor(String cor) {
         this.cor = cor;
     }
+
     public String getMarca() {
         return marca;
     }
+
     public void setMarca(String marca) {
         this.marca = marca;
     }
+
     public String getModelo() {
         return modelo;
     }
+
     public void setModelo(String modelo) {
         this.modelo = modelo;
     }
 
     @Override
     public boolean pagar() {
-        if(this.getStatus().equals("estacionado")) {
-            this.setStatus("livre");
+        if (this.getStatus().equals("reservado") || this.getStatus().equals("estacionado")) {
+            this.setStatus("pago");
+            stopTimer();
             return true;
-        } else {
-            //System.out.println("o veiculo não está estacionado");
-            return false;
         }
+        return false;
     }
 
     public boolean reservar(int[][] matrizVagas) {
@@ -45,12 +49,16 @@ public class Carro extends Veiculo {
             for (int j = 0; j < matrizVagas[i].length; j++) {
                 if (matrizVagas[i][j] == 0) {
                     matrizVagas[i][j] = 1;
+                    startTimer();
                     this.setStatus("reservado");
                     return true;
                 }
             }
         }
-        //System.out.println("não há vagas disponiveis");
         return false;
+    }
+
+    public void estacionar() {
+        super.estacionar();
     }
 }

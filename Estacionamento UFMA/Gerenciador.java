@@ -1,7 +1,7 @@
 public class Gerenciador {
     public int gerarConta(Veiculo veiculo){
         if (veiculo.getStatus().equals("estacionado")) {
-            veiculo.setValor(veiculo.getSegundos() * 0.005f);
+            veiculo.setValor(veiculo.getMinutos() * 0.005f);
             return Math.round(veiculo.getValor());
         }
         return 0;

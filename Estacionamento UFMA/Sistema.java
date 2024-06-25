@@ -1,19 +1,19 @@
 import java.util.*;
 public class Sistema {
-    private float horario;
+    private float horario = 0.0f;
 
     private static final int senha = 12345;
-    static private ArrayList<Cliente> clientes = new ArrayList<>();
+    private static ArrayList<Cliente> clientes = new ArrayList<>();
     private static int[][] vagasTerreo = {{0,0,0}, {0,0,0}};
 
-    public Sistema(float horario,ArrayList<Cliente> clientes,int[][] vagas) {
+    public Sistema(float horario) {
         this.horario = horario;
-        this.clientes = clientes;
-        this.vagasTerreo = vagas;
     }
-    public static void adicionaCliente(Cliente cliente){
+
+    public static void adicionaCliente(Cliente cliente) {
         clientes.add(cliente);
     }
+
     public static boolean verificaSenha(int teste){
         if(teste == senha){
             return true;
