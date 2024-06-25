@@ -54,10 +54,9 @@ public class MenuCaminhao extends JFrame implements ActionListener {
             comprimento = Float.parseFloat(comprimentoField.getText());
             veiculo = new Caminhao(0, 3, "livre", carga, comprimento);
 
-            count--;
-            if (cliente == null) {
-                veiculo.setStatus("Alugado");
-            }else {
+            if(cliente != null) {
+                count--;
+                cliente.adicionarVeiculo(veiculo);
                 if (count > 0) {
                     app = new MenuCadastrarVeiculo(count, cliente);
                     app.setVisible(true);
@@ -65,6 +64,8 @@ public class MenuCaminhao extends JFrame implements ActionListener {
                     Sistema.adicionaCliente(cliente);
                     JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 }
+            }else{
+                veiculo.setStatus("Alugado");
             }
             this.dispose();
 

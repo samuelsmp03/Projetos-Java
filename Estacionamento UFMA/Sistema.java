@@ -23,7 +23,9 @@ public class Sistema {
     public static Cliente procuraCliente(String email,long numero){
         if(clientes != null) {
             for (Cliente cliente : clientes) {
-                if (cliente.getEmail() == email && cliente.getCelular() == numero) {
+                //System.out.println(cliente.getEmail() +" " +cliente.getCelular());
+                //System.out.println("cliente == email"+ cliente.getEmail().equals(email)+ "cliente == celular" +(cliente.getCelular() == numero));
+                if (cliente.getEmail().equals(email) && cliente.getCelular() == numero) {
                     return cliente;
                 }
             }

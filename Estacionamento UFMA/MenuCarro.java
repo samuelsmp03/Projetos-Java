@@ -65,7 +65,7 @@ public class MenuCarro extends JFrame implements ActionListener {
             cor = corField.getText();
             marca = marcaField.getText();
             modelo = modeloField.getText();
-            veiculo = new Carro(0, 4, "livre", marca, modelo, cor);
+            veiculo = new Carro(0, 4, "livre",cor,marca,modelo);
 
             if (cliente != null) {
                 cliente.adicionarVeiculo(veiculo);

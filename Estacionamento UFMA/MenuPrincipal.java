@@ -4,34 +4,24 @@ import java.awt.event.*;
 
 public class MenuPrincipal extends JFrame implements ActionListener {
 
-    private JLabel mensagem;
-    private JButton convidado;
-    private JButton cliente;
-    private JButton gerente;
+    private JLabel mensagem = new JLabel("Bem-vindo ao estacionamento UFMA! Selecione a forma de login", SwingConstants.CENTER);
+    private JButton convidado = new JButton("Convidado");
+    private JButton cliente = new JButton("Cliente");
+    private JButton gerente = new JButton("Gerente");
     private JPanel teste;
-    private Dimension buttonSize = new Dimension(220,80);
+    private GridLayout layout = new GridLayout(0,1);
 
     public MenuPrincipal(){
         super("Estacionamento UFMA");
         this.setSize(800,600);
-
-        mensagem = new JLabel("Bem-vindo ao estacionamento UFMA! Selecione a forma de login");
-        convidado = new JButton("Convidado");
-        cliente = new JButton("Cliente");
-        gerente = new JButton("Gerente");
-
-
+        this.setLayout(layout);
         convidado.addActionListener(this);
         cliente.addActionListener(this);
         gerente.addActionListener(this);
-        convidado.setPreferredSize(buttonSize);
-        cliente.setPreferredSize(buttonSize);
-        gerente.setPreferredSize(buttonSize);
-
-        add(convidado,BorderLayout.WEST);
-        add(cliente,BorderLayout.CENTER);
-        add(gerente,BorderLayout.EAST);
-        add(mensagem,BorderLayout.NORTH);
+        add(mensagem);
+        add(convidado);
+        add(cliente);
+        add(gerente);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

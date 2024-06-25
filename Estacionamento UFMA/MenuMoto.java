@@ -53,7 +53,7 @@ public class MenuMoto extends JFrame implements ActionListener {
         try {
             cilindradas = Integer.parseInt(cilindradasField.getText());
             marca = marcaField.getText();
-            veiculo = new Moto(0, 2, "livre", marca, cilindradas);
+            veiculo = new Moto(0, 2, "livre",marca,cilindradas);
 
             if (cliente != null) {
                 cliente.adicionarVeiculo(veiculo);

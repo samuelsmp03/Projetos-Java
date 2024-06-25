@@ -35,16 +35,18 @@ public class MenuLoginGerente extends JFrame implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent event){
+    public void actionPerformed(ActionEvent event) {
         try {
             int teste = Integer.parseInt(senhaField.getText());
-            if(Sistema.verificaSenha(teste) == true){
+            if (Sistema.verificaSenha(teste) == true) {
                 this.dispose();
                 MenuGerente app = new MenuGerente();
                 app.setVisible(true);
-            }else{
-                JOptionPane.showMessageDialog(this,"Senha incorreta" , "Erro", JOptionPane.ERROR_MESSAGE);            }
-        }catch(Exception exception){
-            JOptionPane.showMessageDialog(this,"Insira um inteiro" , "Erro", JOptionPane.ERROR_MESSAGE);        }
+            } else {
+                JOptionPane.showMessageDialog(this, "Senha incorreta", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception exception) {
+            JOptionPane.showMessageDialog(this, "Ocorreu um erro: " + exception.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }

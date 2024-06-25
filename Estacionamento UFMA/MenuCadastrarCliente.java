@@ -74,7 +74,7 @@ public class MenuCadastrarCliente extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(this, "O cliente precisa ter algum veículo", "Erro", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception exception) {
-            JOptionPane.showMessageDialog(this, "Tipo de dado incorreto!", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Ocorreu um erro: " + exception.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
 }
