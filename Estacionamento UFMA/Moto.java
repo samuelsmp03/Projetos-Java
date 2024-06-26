@@ -1,6 +1,7 @@
 public class Moto extends Veiculo {
     private String marca;
     private int cilindradas;
+    private Vagas vaga;
 
     public Moto(int segundos, float valor, String status, String marca, int cilindradas) {
         super(segundos, valor, status);
@@ -19,6 +20,16 @@ public class Moto extends Veiculo {
     }
     public void setCilindradas(int cilindradas) {
         this.cilindradas = cilindradas;
+
+    }
+    @Override
+    public boolean estacionar() {
+        //0 ->Estacionado , 1-> Reservado
+        vaga = new Vagas(0, this);
+        Sistema.addVaga(vaga);
+        super.setStatus("estacionado");
+        startTimer();
+        return true;
     }
 
     @Override

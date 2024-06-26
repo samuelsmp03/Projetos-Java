@@ -21,8 +21,11 @@ public class ClasseReserva {
         this.status = status;
     }
 
-    public void setHorario(long[] horario) {
-        System.arraycopy(horario, 0, horaMarcadaA, 0, horario.length);
+    public void setHorario() {
+        String horario = Reader.lerString();
+        for (int i = 0; i < 6; i++) {
+            horaMarcadaA[i] = Character.getNumericValue(horario.charAt(i));
+        }
     }
 
     private long[] getHoraAtual() {

@@ -3,6 +3,8 @@ public class Carro extends Veiculo {
     private String marca;
     private String modelo;
     private ClasseReserva reserva;
+    private Vagas vaga;
+    private Carro carro;
 
     public Carro(int minutos, float valor, String status, String cor, String marca, String modelo) {
         super(minutos, valor, status);
@@ -45,36 +47,47 @@ public class Carro extends Veiculo {
         return false;
     }
 
-    public boolean reservar(int[][] matrizVagas) {
+    public boolean reservar(Carro carroNv) {
         long[] horario = new long[6];
         /*
         for (int i = 0; i < horario.length; i++) {
             horario[i] = Reader.lerLong();
         }
         */
+        reserva = new ClasseReserva("reservado");
+        //reserva.setHorario(horario);
 
-        for (int i = 0; i < matrizVagas.length; i++) {
-            for (int j = 0; j < matrizVagas[i].length; j++) {
-                if (matrizVagas[i][j] == 0) {
-                    matrizVagas[i][j] = 1;
-                    startTimer();
-                    this.setStatus("reservado");
-                    reserva.setStatus("reservada");
-                    //reserva.setHorario(horario);
-                    return true;
-                }
-            }
-        }
-        return false;
+        super.setStatus("reservado");
+        Vagas vaga = new Vagas(1,carroNv);
+        carro = carroNv;
+        System.out.println("DENTRO DE CARRO RESERVAR  "+vaga.getStatus()+"  "+carro.getModelo());
+        Sistema.addVaga(vaga);
+        return true;
     }
 
 
     @Override
-    public boolean estacionar(int[][] matrizVagas) {
-        if(super.estacionar(matrizVagas)){
-            reserva = null;
+    public boolean estacionar() {
+        //0 -> Estacionado ; 1 -> Reservado;
+        if(reserva == null) {
+            vaga = new Vagas(0, this);
+            Sistema.addVaga(vaga);
+            super.setStatus("estacionado");
+            carro = ((Carro)vaga.getVeiculo());
+            System.out.println("DENTRO DE CARRO ESTACIONAR IF "+vaga.getStatus()+"  "+carro.getModelo());
+            System.out.println("DENTRO DE CARRO ESTACIONAR IF "+this.modelo+"  "+this.marca);
+            startTimer();
             return true;
         }else{
+            for(Vagas vaga: Sistema.getVagas()){
+                if(vaga.getVeiculo() == this){
+                    vaga.setStatus(0);
+                    super.setStatus("estacionado");
+                    startTimer();
+                    carro = ((Carro)vaga.getVeiculo());
+                    return true;
+                }
+            }
             return false;
         }
     }

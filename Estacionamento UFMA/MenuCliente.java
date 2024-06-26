@@ -28,7 +28,6 @@ public class MenuCliente extends JFrame implements ActionListener {
     public MenuCliente(Cliente cliente) {
         super("Menu Cliente");
         this.cliente = cliente;
-        this.veiculos = cliente.getVeiculos();
         msg = new JLabel("Bem-vindo, "+cliente.getEmail(), SwingConstants.CENTER);
         this.setSize(600, 600);
         GridLayout layout = new GridLayout(0,1);
@@ -45,7 +44,6 @@ public class MenuCliente extends JFrame implements ActionListener {
         listarVeiculos.addActionListener(this);
         estacionar.addActionListener(this);
         add(panel);
-        //System.out.println(cliente.getVeiculos().size());
     }
     @Override
     public void actionPerformed(ActionEvent event){
@@ -56,7 +54,7 @@ public class MenuCliente extends JFrame implements ActionListener {
             app = new MenuCadastrarVeiculo(1,cliente);
             app.setVisible(true);
         }else if(event.getSource() == listarVeiculos){
-            for(Veiculo veiculo: veiculos){
+            for(Veiculo veiculo: cliente.getVeiculos()){
                 if(veiculo instanceof Moto) {
                     moto = (Moto)veiculo;
                     veiculosPanel.add(new JLabel("Moto:  Cilindradas: "+moto.getCilindradas()+"  ;Marca: "+moto.getMarca(),SwingConstants.CENTER));
@@ -74,22 +72,41 @@ public class MenuCliente extends JFrame implements ActionListener {
             veiculosPanel.removeAll();
         }
         else if(event.getSource() == estacionar){
-
-            for(Veiculo veiculo: veiculos){
+            estacionarPanel.removeAll();
+            for(Veiculo veiculo: cliente.getVeiculos()){
                 if(veiculo instanceof Moto) {
-
+                    countMot++;
+                    moto = (Moto)veiculo;
+                    estacionarPanel.add(new JLabel("Cilindradas:"+moto.getCilindradas() +" ;Marca:"+moto.getMarca(),SwingConstants.CENTER));
+                    button = new JButton("Moto"+countMot);
+                    button.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            try{
+                                if(moto.estacionar() == true){
+                                    JOptionPane.showMessageDialog(button, "Moto estacionada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                                }else{
+                                    JOptionPane.showMessageDialog(button, "Não foi possível cadastrar esse veículo", "Erro", JOptionPane.ERROR_MESSAGE);
+                                }
+                            }catch(Exception exception){
+                                JOptionPane.showMessageDialog(panel, "Ocorreu um erro: " + exception.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+                            }
+                        }
+                    });
+                    estacionarPanel.add(button);
                 }
                 else if(veiculo instanceof Carro){
                     countCar++;
                     carro = (Carro)veiculo;
+                    System.out.println("DENTRO DE MENUCLIENTE ESTACIONAR "+carro.getModelo());
                     estacionarPanel.add(new JLabel("Marca:"+carro.getMarca() +"; Cor:"+carro.getCor()+"; Modelo: "+carro.getModelo(),SwingConstants.CENTER));
                     button = new JButton("Carro"+countCar);
                     button.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
                             try{
-                                if(carro.reservar(Sistema.getVagas()) == true){
-                                    JOptionPane.showMessageDialog(button, "Carro reservado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                                if(carro.estacionar() == true){
+                                    JOptionPane.showMessageDialog(button, "Carro estacionado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                                 }else{
                                     JOptionPane.showMessageDialog(button, "Não foi possível cadastrar esse veículo", "Erro", JOptionPane.ERROR_MESSAGE);
                                 }
@@ -109,8 +126,8 @@ public class MenuCliente extends JFrame implements ActionListener {
                         @Override
                         public void actionPerformed(ActionEvent e) {
                             try{
-                                if(caminhao.estacionar(Sistema.getVagas()) == true){
-                                    JOptionPane.showMessageDialog(button, "Caminhão reservado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                                if(caminhao.estacionar() == true){
+                                    JOptionPane.showMessageDialog(button, "Caminhão estacionado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                                 }else{
                                     JOptionPane.showMessageDialog(button, "Não foi possível cadastrar esse veículo", "Erro", JOptionPane.ERROR_MESSAGE);
                                 }
@@ -122,7 +139,7 @@ public class MenuCliente extends JFrame implements ActionListener {
                     estacionarPanel.add(button);
                 }
             }
-            add(estacionarPanel);
+            JOptionPane.showMessageDialog(null, estacionarPanel, "Estacionar Veículo Cliente", JOptionPane.PLAIN_MESSAGE);
         }
         }
     }

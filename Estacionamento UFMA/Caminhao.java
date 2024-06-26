@@ -2,12 +2,12 @@ public class Caminhao extends Veiculo {
     private int cargaMax;
     private float comprimento;
     private ClasseReserva reserva;
+    private Vagas vaga;
 
     public Caminhao(int minutos, float valor, String status, int cargaMax, float comprimento) {
         super(minutos, valor, status);
         this.cargaMax = cargaMax;
         this.comprimento = comprimento;
-        this.reserva = new ClasseReserva("livre");
     }
 
     public int getCargaMax() {
@@ -36,35 +36,40 @@ public class Caminhao extends Veiculo {
         return false;
     }
 
-    public boolean reservar(int[][] matrizVagas) {
+    public boolean reservar(Caminhao caminhao) {
         long[] horario = new long[6];
         /*
         for (int i = 0; i < horario.length; i++) {
             horario[i] = Reader.lerLong();
         }
         */
+        reserva = new ClasseReserva("reservado");
+        //reserva.setHorario(horario);
 
-        for (int i = 0; i < matrizVagas.length; i++) {
-            for (int j = 0; j < matrizVagas[i].length; j++) {
-                if (matrizVagas[i][j] == 0) {
-                    matrizVagas[i][j] = 1;
-                    startTimer();
-                    this.setStatus("reservado");
-                    reserva.setStatus("reservada");
-                    //reserva.setHorario(horario);
-                    return true;
-                }
-            }
-        }
-        return false;
+        super.setStatus("reservado");
+        Vagas vaga = new Vagas(1,caminhao);
+        Sistema.addVaga(vaga);
+        return true;
     }
 
     @Override
-    public boolean estacionar(int[][] matrizVagas) {
-        if(super.estacionar(matrizVagas)){
-            reserva = null;
+    public boolean estacionar() {
+        //0 -> Estacionado ; 1 -> Reservado;
+        if(reserva == null) {
+            vaga = new Vagas(0, this);
+            Sistema.addVaga(vaga);
+            super.setStatus("estacionado");
+            startTimer();
             return true;
         }else{
+            for(Vagas vaga: Sistema.getVagas()){
+                if(vaga.getVeiculo() == this){
+                    vaga.setStatus(0);
+                    super.setStatus("estacionado");
+                    startTimer();
+                    return true;
+                }
+            }
             return false;
         }
     }

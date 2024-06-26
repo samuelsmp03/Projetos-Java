@@ -1,32 +1,25 @@
 public class Vagas {
-    private String localizacao;
+    private static final String localizacao = "Piso";
     private int status;
-    private Veiculo tipo;
+    //0 -> Estacionada , 1-> Reservada , 2-> Pago, 3-> Reserva CANCELADA
+    private Veiculo veiculo;
 
-    public Vagas(String localizacao, int status, Veiculo tipo) {
-        this.localizacao = localizacao;
+    public Vagas(int status, Veiculo veiculo) {
         this.status = status;
-        this.tipo = tipo;
+        this.veiculo = veiculo;
     }
 
 
-
-    public String getLocalizacao() {
-        return localizacao;
-    }
-    public void setLocalizacao(String localizacao) {
-        this.localizacao = localizacao;
-    }
     public int getStatus() {
         return status;
     }
     public void setStatus(int status) {
         this.status = status;
     }
-    public Veiculo getTipo() {
-        return tipo;
+    public Veiculo getVeiculo() {
+        return veiculo;
     }
-    public void setTipo(Veiculo tipo) {
-        this.tipo = tipo;
+    public void setVeiculo(Veiculo tipo) {
+        this.veiculo = tipo;
     }
 }

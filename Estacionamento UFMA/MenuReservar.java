@@ -15,15 +15,19 @@ public class MenuReservar extends JFrame implements ActionListener {
     private Carro carro;
     private Caminhao caminhao;
     private JButton button;
+    private JMenuItem [] itens;
+    private JMenu menuAbrir;
 
     public MenuReservar(Cliente cliente){
         super("Menu Reservar Vaga");
         this.cliente = cliente;
         this.veiculos = cliente.getVeiculos();
+        menuAbrir = new JMenu("Abrir");
+        itens = new JMenuItem[veiculos.size()];
         this.setSize(600,600);
         setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        for(Veiculo veiculo: veiculos){
+        for(Veiculo veiculo: cliente.getVeiculos()){
             if(veiculo instanceof Moto) {
 
             }
@@ -36,7 +40,7 @@ public class MenuReservar extends JFrame implements ActionListener {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         try{
-                            if(carro.reservar(Sistema.getVagas()) == true){
+                            if(carro.reservar(carro)){
                                 JOptionPane.showMessageDialog(button, "Carro reservado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                             }else{
                                 JOptionPane.showMessageDialog(button, "Não foi possível cadastrar esse veículo", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -57,7 +61,7 @@ public class MenuReservar extends JFrame implements ActionListener {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         try{
-                            if(caminhao.reservar(Sistema.getVagas()) == true){
+                            if(caminhao.reservar(caminhao)){
                                 JOptionPane.showMessageDialog(button, "Caminhão reservado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                             }else{
                                 JOptionPane.showMessageDialog(button, "Não foi possível cadastrar esse veículo", "Erro", JOptionPane.ERROR_MESSAGE);

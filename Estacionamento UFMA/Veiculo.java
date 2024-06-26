@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -45,17 +46,5 @@ public abstract class Veiculo implements Taxa {
         scheduler.shutdown();
     }
 
-    public boolean estacionar(int[][] matrizVagas) {
-        for (int i = 0; i < matrizVagas.length; i++) {
-            for (int j = 0; j < matrizVagas[i].length; j++) {
-                if (matrizVagas[i][j] == 0) {
-                    matrizVagas[i][j] = 1;
-                    startTimer();
-                    this.setStatus("estacionado");
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
+    public abstract boolean estacionar();
 }

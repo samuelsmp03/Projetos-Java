@@ -53,7 +53,6 @@ public class MenuLoginCliente extends JFrame implements ActionListener {
             email = emailField.getText();
             numero = parseLong(numeroField.getText());
             cliente = Sistema.procuraCliente(email, numero);
-            System.out.println(numero+numero);
             if (cliente != null) {
                 MenuCliente app = new MenuCliente(cliente);
                 app.setVisible(true);

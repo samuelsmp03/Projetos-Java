@@ -9,6 +9,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
     private JButton cliente = new JButton("Cliente");
     private JButton gerente = new JButton("Gerente");
     private JPanel teste;
+    private JFrame app;
     private GridLayout layout = new GridLayout(0,1);
 
     public MenuPrincipal(){
@@ -28,13 +29,15 @@ public class MenuPrincipal extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent event){
         if(event.getSource() == cliente) {
-            MenuLoginCliente app = new MenuLoginCliente();
+            app = new MenuLoginCliente();
             app.setVisible(true);
         }
         else if(event.getSource() == convidado){
-            JOptionPane.showMessageDialog(this,"Convidado" , "Erro", JOptionPane.ERROR_MESSAGE);        }
+            app = new MenuCadastrarVeiculo(1,null);
+            app.setVisible(true);
+        }
         else if(event.getSource() == gerente){
-            MenuLoginGerente app = new MenuLoginGerente();
+            app = new MenuLoginGerente();
             app.setVisible(true);
         }
     }

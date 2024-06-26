@@ -36,21 +36,20 @@ public class Cliente implements Reserva {
     }
 
     @Override
-    public boolean reservar(int[][] matrizVagas) {
+    public boolean reservar(){
         for (Veiculo veiculo : veiculos) {
             if (veiculo instanceof Carro) {
                 Carro carro = (Carro) veiculo;
-                if (carro.reservar(matrizVagas)) {
+                if (carro.reservar(carro)) {
                     return true;
                 }
             } else if (veiculo instanceof Caminhao) {
                 Caminhao caminhao = (Caminhao) veiculo;
-                if (caminhao.reservar(matrizVagas)) {
+                if (caminhao.reservar(caminhao)) {
                     return true;
                 }
             }
         }
-        System.out.println("nenhuma reserva foi possivel");
         return false;
     }
 }
