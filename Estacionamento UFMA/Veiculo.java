@@ -45,8 +45,17 @@ public abstract class Veiculo implements Taxa {
         scheduler.shutdown();
     }
 
-    public void estacionar() {
-        this.setStatus("estacionado");
-        startTimer();
+    public boolean estacionar(int[][] matrizVagas) {
+        for (int i = 0; i < matrizVagas.length; i++) {
+            for (int j = 0; j < matrizVagas[i].length; j++) {
+                if (matrizVagas[i][j] == 0) {
+                    matrizVagas[i][j] = 1;
+                    startTimer();
+                    this.setStatus("estacionado");
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

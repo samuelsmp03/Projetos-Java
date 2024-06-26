@@ -75,10 +75,11 @@ public class MenuCarro extends JFrame implements ActionListener {
                     app.setVisible(true);
                 } else {
                     Sistema.adicionaCliente(cliente);
-                    JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Veiculo do cliente cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 }
             } else {
                 veiculo.setStatus("Alugado");
+                JOptionPane.showMessageDialog(this, "Veiculo estacionado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             }
 
             this.dispose();

@@ -4,7 +4,8 @@ public class Sistema {
 
     private static final int senha = 12345;
     private static ArrayList<Cliente> clientes = new ArrayList<>();
-    private static int[][] vagasTerreo = {{0,0,0}, {0,0,0}};
+    private static ArrayList<Veiculo> veiculosSoltos = new ArrayList<>();
+    private static int[][] vagasTerreo = {{0,0,0}, {0,0,0},{0,0,0}};
 
     public Sistema(float horario) {
         this.horario = horario;
@@ -57,5 +58,20 @@ public class Sistema {
 
     public void setVagasTerreo(int[][] vagasTerreo) {
         this.vagasTerreo = vagasTerreo;
+    }
+    public static void verificaReserva(){
+        for(Cliente cliente : clientes){
+            for(Veiculo veiculo:cliente.getVeiculos()){
+                if(veiculo instanceof Moto){
+                    continue;
+                }
+                else if(veiculo instanceof Carro){
+                    ((Carro)veiculo).verificarReserva();
+                }
+                else if(veiculo instanceof Caminhao){
+                    ((Caminhao)veiculo).verificarReserva();
+                }
+            }
+        }
     }
 }

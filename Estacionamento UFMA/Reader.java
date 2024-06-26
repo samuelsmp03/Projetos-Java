@@ -2,14 +2,14 @@ import java.util.*;
 public class Reader {
     static Scanner input = new Scanner(System.in);
 
-    public static long lerInt() {
+    public static long lerLong() {
         long aux;
         try {
-            aux = input.nextInt();
+            aux = input.nextLong();
         } catch (InputMismatchException exception) {
             System.err.println ("valor invalido, digite um inteiro");
             input.nextLine();
-            return lerInt();
+            return lerLong();
         }
         return aux;
     }

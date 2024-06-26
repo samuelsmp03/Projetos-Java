@@ -2,6 +2,7 @@ public class Carro extends Veiculo {
     private String cor;
     private String marca;
     private String modelo;
+    private ClasseReserva reserva;
 
     public Carro(int minutos, float valor, String status, String cor, String marca, String modelo) {
         super(minutos, valor, status);
@@ -45,12 +46,21 @@ public class Carro extends Veiculo {
     }
 
     public boolean reservar(int[][] matrizVagas) {
+        long[] horario = new long[6];
+        /*
+        for (int i = 0; i < horario.length; i++) {
+            horario[i] = Reader.lerLong();
+        }
+        */
+
         for (int i = 0; i < matrizVagas.length; i++) {
             for (int j = 0; j < matrizVagas[i].length; j++) {
                 if (matrizVagas[i][j] == 0) {
                     matrizVagas[i][j] = 1;
                     startTimer();
                     this.setStatus("reservado");
+                    reserva.setStatus("reservada");
+                    //reserva.setHorario(horario);
                     return true;
                 }
             }
@@ -58,7 +68,21 @@ public class Carro extends Veiculo {
         return false;
     }
 
-    public void estacionar() {
-        super.estacionar();
+
+    @Override
+    public boolean estacionar(int[][] matrizVagas) {
+        if(super.estacionar(matrizVagas)){
+            reserva = null;
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public void verificarReserva() {
+        reserva.passouDaHora();
+        if (reserva.getStatus().equals("livre")) {
+            this.setStatus("livre");
+        }
     }
 }
